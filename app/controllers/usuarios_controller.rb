@@ -2,6 +2,7 @@ class UsuariosController < ApplicationController
   before_action :acesso_restrito!, only: [:new, :edit]
     def index
       @usuarios = Usuario.all
+      session[:logado] = ! session[:logado]
     end
 
     def create
@@ -36,7 +37,7 @@ class UsuariosController < ApplicationController
     end
 
     def logado?
-      rand.round.zero?
+      session[:logado].present?
     end
 
     def acesso_restrito!
