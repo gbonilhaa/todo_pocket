@@ -24,7 +24,7 @@
              data-method="patch"></a>
             
             
-            <a class="titulo" href="<%= edit_tarefa_path tarefa %>?list=<%= action_name %>">
+            <a href="<%= edit_tarefa_path tarefa %>?list=<%= action_name %>">
             
             <%= tarefa.titulo %>
 
@@ -48,7 +48,7 @@
 
         <%= form_for tarefa do %>
             <input type="hidden" name="list" value="<%= params[:list] || :index %>">
-            <input class="edit" name="titulo" value="<%= tarefa.titulo %>" autofocus >
+            <input class="edit" name="titulo" value="<%= tarefa.titulo %>" required="required" autofocus="autofocus">
         <% end %>
 
     </li>
