@@ -11,11 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140328182929) do
+ActiveRecord::Schema.define(version: 20140331131940) do
 
   create_table "tarefas", force: true do |t|
     t.string   "titulo"
     t.boolean  "concluida"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "usuarios", force: true do |t|
+    t.string   "nomerails"
+    t.string   "g"
+    t.string   "scaffold"
+    t.string   "cadastro"
+    t.string   "nome"
+    t.string   "email"
+    t.string   "password_digest"
+    t.text     "endereco"
+    t.boolean  "admin"
+    t.date     "data_nasc"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
