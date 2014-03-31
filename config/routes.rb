@@ -2,6 +2,9 @@ TodoPocket::Application.routes.draw do
 
   resources :usuarios
 
+  resources :sessions, only: [:create, :destroy]
+  get 'login' => 'sessions#create'
+  get 'logout' => 'sessions#destroy'
 
   resources :tarefas do
     
