@@ -15,14 +15,19 @@
     <%= javascript_include_tag "https://rawgithub.com/neves/9598842/raw/e0d55396855ce5f629d9605a2e78695afb0606a6/rails-scaffold-bootstrap.js" %>
     <link href="../../../public/application.css" media="all" rel="stylesheet" />
 
-  <title>TodoPocket</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <title> SITE </title>
+
 </head>
 <body>
 
-<%= yield %>
+<div class="container">
+
+        <%= yield %>
+
+</div>
 
 </body>
 </html>

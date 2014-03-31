@@ -6,8 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+#
+#for	i in 1..10
+#	Tarefa.create titulo: "Tarefa #{i}",
+#				  concluida: i % 3 == 0
+#end
+
 
 for	i in 1..10
-	Tarefa.create titulo: "Tarefa #{i}",
-				  concluida: i % 3 == 0
+	Usuarios.create nome: "Usuário #{i}"
 end
