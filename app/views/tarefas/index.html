@@ -22,14 +22,10 @@
             <a href="<%= toggle_tarefa_path tarefa %>"
              class="check"
              data-method="patch"></a>
-            
-            
-            <a href="<%= edit_tarefa_path tarefa %>?list=<%= action_name %>">
-            
-            <%= tarefa.titulo %>
 
-            </a>
-            
+
+            <a class="titulo" href="<%= edit_tarefa_path tarefa %>?list=<%= action_name %>">
+                <%= tarefa.titulo %>
 
             <a class="remove" href="<%= tarefa_path tarefa %>"
             data-method="delete"
@@ -37,25 +33,16 @@
             </a>
         </div>
 
-        <form class="edit">
-            <input name="tarefa"
-                   type="text"
-                   value="text"
-                   class="form-control"
-                   required="required"
-                   autofocus="autofocus" />
-        </form>
 
         <%= form_for tarefa do %>
             <input type="hidden" name="list" value="<%= params[:list] || :index %>">
-            <input class="edit" name="titulo" value="<%= tarefa.titulo %>" required="required" autofocus="autofocus">
+            <input class="edit" name="titulo" value="<%= tarefa.titulo %>" autofocus required>
         <% end %>
-
     </li>
     <% end %>
 </ul>
 
-     <!--Contador Rodapé-->
+        <!--  Contador Rodapé  -->
 <nav class="navbar navbar navbar-fixed-bottom">
     <div class="container-fluid">
         <strong class="navbar-text">

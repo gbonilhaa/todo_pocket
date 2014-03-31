@@ -12,3 +12,4 @@
  *= require_tree .
  */
  @import "custom.css";
+ @import "bootstrap.min.css";

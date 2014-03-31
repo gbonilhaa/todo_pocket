@@ -1,4 +1,7 @@
 TodoPocket::Application.routes.draw do
+
+  resource :usuarios
+
   resources :tarefas do
     
     collection do
