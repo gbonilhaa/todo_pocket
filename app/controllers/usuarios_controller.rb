@@ -8,5 +8,9 @@ class UsuariosController < ApplicationController
     def update
         Tarefa.update nome: params[:nome], password_digest: params[:password_digest]
         redirect_to tarefas_path
-      end
+    end
+
+    def new
+          @usuario = Usuario.new
+    end
   end
