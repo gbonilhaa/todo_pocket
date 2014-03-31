@@ -72,5 +72,20 @@ class TarefasController < ApplicationController
     @count_todas = Tarefa.count
   end
 
+  def redirect
+      redirect_to case params[:list]
+        when 'concluidas' then concluidas_tarefas_path
+        when 'ativas' then ativas_tarefas_path
+        else tarefas_path
+    end
+  end
+
+  def get_tarefas_edit
+      case params[:list]
+        when 'concluidas' then Tarefa.concluidas
+        when 'ativas' then Tarefa.ativas
+        else Tarefa.all
+    end
+  end
 
 end

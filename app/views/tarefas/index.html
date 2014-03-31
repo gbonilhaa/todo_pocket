@@ -48,13 +48,14 @@
 
         <%= form_for tarefa do %>
             <input type="hidden" name="list" value="<%= params[:list] || :index %>">
-            <input class="edit" name="titulo" value="<%= tarefa.titulo %>" autofocus required>
+            <input class="edit" name="titulo" value="<%= tarefa.titulo %>" autofocus >
         <% end %>
+
     </li>
     <% end %>
 </ul>
 
-        #Contador Rodapé
+     <!--Contador Rodapé-->
 <nav class="navbar navbar navbar-fixed-bottom">
     <div class="container-fluid">
         <strong class="navbar-text">
