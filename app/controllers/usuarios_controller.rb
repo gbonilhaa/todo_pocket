@@ -36,7 +36,7 @@ class UsuariosController < ApplicationController
     end
 
     def logado?
-      false
+      rand.round.zero?
     end
 
     def acesso_restrito!
