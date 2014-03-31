@@ -1,16 +1,27 @@
 class UsuariosController < ApplicationController
 
     def create
-      Usuario.create nome: params[:nome], email: params[:email], password_digest: params[:password_digest]
+      Usuario.create usuario_params
         redirect_to :back
       end
 
     def update
-        Tarefa.update nome: params[:nome], password_digest: params[:password_digest]
-        redirect_to tarefas_path
+      Usuario.update params[:id], usuario_params
+      redirect_to usuarios_path
     end
 
     def new
           @usuario = Usuario.new
+    end
+
+    def edit
+          @usuario = Usuario.find params[:id]
+          render :new
+    end
+
+    private
+
+    def usuario_params
+          params.require(:usuario).permit(:nome, :email, :password_digest)
     end
   end
