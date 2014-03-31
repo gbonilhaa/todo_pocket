@@ -21,7 +21,10 @@
               <%= f.label :password_digest, 'Senha' %>
               <%= f.password_field :password_digest, class: 'form-control' %>
         </div>
-
+        <div class="form-group">
+          <%= f.label :password_confirmation, 'senha (repetir)' %>
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
+        </div>
         <%= submit_tag 'Salvar', class: 'btn btn-primary pull-right' %>
 
     <% end %>
