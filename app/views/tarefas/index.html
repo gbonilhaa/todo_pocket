@@ -16,16 +16,17 @@
 
 <ul class="list-group">
 <% for tarefa in @tarefas %>
-    <li class="list-group-item <%= 'concluida' if tarefa.concluida %>">
+    <li class="list-group-item <%= 'editing' if tarefa == @tarefa %> <%= 'concluida' if tarefa.concluida %>">
         <div class="view">
             
             <a href="<%= toggle_tarefa_path tarefa %>"
              class="check"
-             data-method="patch"></a>
-
+             data-method="patch">
+             </a>
 
             <a class="titulo" href="<%= edit_tarefa_path tarefa %>?list=<%= action_name %>">
                 <%= tarefa.titulo %>
+            </a>
 
             <a class="remove" href="<%= tarefa_path tarefa %>"
             data-method="delete"
@@ -34,9 +35,9 @@
         </div>
 
 
-        <%= form_for tarefa do %>
+        <%= form_for tarefa, html: {class: 'edit'} do %>
             <input type="hidden" name="list" value="<%= params[:list] || :index %>">
-            <input class="edit" name="titulo" value="<%= tarefa.titulo %>" autofocus required>
+            <input class="form-control" name="titulo" value="<%= tarefa.titulo %>" autofocus required>
         <% end %>
     </li>
     <% end %>
