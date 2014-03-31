@@ -1,4 +1,5 @@
 class UsuariosController < ApplicationController
+  before_action :acesso_restrito!, only: [:new, :edit]
     def index
       @usuarios = Usuario.all
     end
@@ -25,7 +26,7 @@ class UsuariosController < ApplicationController
 
     def edit
       @usuario = Usuario.find params[:id]
-      acesso_restrito!
+
     end
 
     private
@@ -39,7 +40,8 @@ class UsuariosController < ApplicationController
     end
 
     def acesso_restrito!
-      render text: 'acesso negado' unless logado?
-      end
+      render text: 'acesso negado'
+      return false
+
     end
 end
