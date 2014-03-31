@@ -25,7 +25,7 @@ class UsuariosController < ApplicationController
 
     def edit
       @usuario = Usuario.find params[:id]
-      render :new
+      render text: 'acesso negago'unless logado?
     end
 
     private
@@ -33,4 +33,8 @@ class UsuariosController < ApplicationController
     def usuario_params
       params.require(:usuario).permit(:nome, :email, :password, password_confirmation)
     end
-  end
+
+    def logado?
+      false
+    end
+end
