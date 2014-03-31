@@ -25,7 +25,7 @@ class UsuariosController < ApplicationController
 
     def edit
       @usuario = Usuario.find params[:id]
-      render text: 'acesso negago'unless logado?
+      acesso_restrito!
     end
 
     private
@@ -36,5 +36,10 @@ class UsuariosController < ApplicationController
 
     def logado?
       false
+    end
+
+    def acesso_restrito!
+      render text: 'acesso negado' unless logado?
+      end
     end
 end
