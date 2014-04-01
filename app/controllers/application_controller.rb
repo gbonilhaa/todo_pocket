@@ -4,12 +4,24 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :logado?
+  helper_method :usuario_logado?
    
      def logado?
-       session[:id].present?
+       session_id.present?
      end
    
      def acesso_restrito!
-       redirect_to login_path unless logado?
+       unless logado?
+       		redirect_to login_path
+       		return false
+       end
      end 
+
+     def session_id
+     	session[:id]
+     end
+
+     def usuario_logado
+     	cadastro.find session_id rescue nil
+     end
 end
