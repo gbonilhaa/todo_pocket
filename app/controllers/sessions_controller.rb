@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:logado] = false
+    reset_session
     redirect_to root_path
   end
 end
