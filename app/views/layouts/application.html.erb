@@ -22,16 +22,16 @@
 
 </head>
 <body data-no-turbolink>
+  <div class="btn-group pull-right" align="right">
+      <%= link_to 'login', login_path, class: 'btn btn-primary' %>
+      <%= link_to 'logout', logout_path, class: 'btn btn-danger'%>
+  </div>
 
 
 <div class="container">
 
         <%= yield %>
 
-  <div class="btn-group pull-right">
-      <%= link_to_unless(logado?), 'login', login_path, class: 'btn btn-primary' %>
-      <%= link_to_if(logado? 'logout', logout_path, class: 'btn btn-danger') {}%>
-  </div>
 
 </div>
 

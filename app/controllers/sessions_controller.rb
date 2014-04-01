@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def create
-    if params[:password] == '123'
-    	session[:logado] = true
+    	cadastro = cadastro.find_by_email(params[:email])
+    	if cadastro && cadastro.authenticate(params[:password])
     else
     	render :new
     end
