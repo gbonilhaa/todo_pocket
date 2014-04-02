@@ -12,39 +12,33 @@
     <meta content="yes" name="apple-mobile-web-app-capable" />
     <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" />
     <meta content="telephone=no" name="format-detection" />
-    <%= javascript_include_tag "https://rawgithub.com/neves/9598842/raw/e0d55396855ce5f629d9605a2e78695afb0606a6/rails-scaffold-bootstrap.js" %>
-    <link href="../../../public/application.css" media="all" rel="stylesheet" />
 
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <title> SITE </title>
 
+
+
 </head>
 <body>
-  
-  <%= render 'layout/flash' %>
 
-  <% if usuario_logado %>
+
+  <%= render 'layouts/flash' %>
+
+  <% if usuario_logado? %>
     <div>
       Bem Vindo!
       <strong>
         <%= usuario_logado.email %>
       </strong>
     </div>
-  <% end %>
-
-  <div class="btn-group pull-right">
-     <%= link_to_unless(logado?, 'login', login_path, class: 'btn btn-primary'){} %>
-     <%= link_to_if(logado?, 'logout', logout_path, class: 'btn btn-danger'){}%>
-   </div>
-
-<div class="container">
+<% end %>
 
         <%= yield %>
 
 
-</div>
+
 
 </body>
 </html>

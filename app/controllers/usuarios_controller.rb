@@ -27,6 +27,7 @@ class UsuariosController < ApplicationController
 
     def edit
       @usuario = Usuario.find params[:id]
+      render :new
 
     end
 

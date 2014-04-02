@@ -10,7 +10,7 @@
       <th>Id</th>
       <th>Nome</th>
       <th>Email</th>
-      <th>Senha</th>
+      <!--<th>Senha</th>-->
     </tr>
   </thead>
     <tbody>
@@ -19,16 +19,21 @@
           <td><%= usuario.id %></td>
           <td><%= usuario.nome %></td>
           <td><%= usuario.email %></td>
-            <td><%= truncate usuario.password_digest %></td>
+            <!--<td><%= truncate usuario.password_digest %></td>-->
             <td>
               <span>
-                <a href="<%= usuario.password_digest %>">
-                  alterar
+
+                <a href="<%= edit_usuario_path usuario %>" class="btn btn-default btn-sm" role="button, glyphicon glyphicon-remove">
+                  <span class="glyphicon glyphicon-pencil"></span> Editar
                 </a>
+
                 <a href="<%= usuario_path usuario%>"
                            data-method="delete"
                            data-confirm="Tem Certeza?"
-                           class="destroy">excluir
+                           class="destroy, btn btn-danger btn-sm"
+                           role="button">
+                  <span class="glyphicon glyphicon-trash"></span>  Remover
+
                 </a>
                 </span>
             </td>

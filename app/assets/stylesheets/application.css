@@ -11,6 +11,11 @@
  *= require_self
  *= require_tree .
  */
- @import "custom.css";
- @import "bootstrap.min.css";
- @import "font-awesome.css";
+@import "custom.css";
+
+body
+{
+background-color: #EFEFEF;
+
+
+}

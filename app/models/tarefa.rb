@@ -4,3 +4,7 @@ default_scope { order 'id desc' }
   scope :ativas, -> { where(concluida: false) }
   scope :concluidas, -> { where(concluida: true) }
 end
+
+
+
+

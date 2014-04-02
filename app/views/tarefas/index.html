@@ -1,72 +1,76 @@
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+
+                <%= form_tag tarefas_path, class: 'navbar-form' do %>
+                <input name="tarefa"
+                       type="text"
+                       class="form-control input-sm"
+                       placeholder="O que você precisa fazer?"
+                       required="required" />
+                <% end %>
+            </div>
+        </nav>
+
+        <ul class="list-group">
+            <% for tarefa in @tarefas %>
+            <li class="list-group-item <%= 'editing' if tarefa == @tarefa %> <%= 'concluida' if tarefa.concluida %>">
+                <div class="view">
+
+                    <a href="<%= toggle_tarefa_path tarefa %>"
+                       class="check"
+                       data-method="patch">
+                    </a>
+
+                    <a class="titulo" href="<%= edit_tarefa_path tarefa %>?list=<%= action_name %>">
+                        <%= tarefa.titulo %>
+                    </a>
+
+                    <a class="remove" href="<%= tarefa_path tarefa %>"
+                       data-method="delete"
+                       data-confirm="Tem acerteza que deseja remover esta tarefa ?">
+                    </a>
+                </div>
 
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <%= form_tag tarefas_path do %>
-            <input id="tarefa"
-                   name="tarefa" 
-                   type="text"
-                   class="form-control input-sm"
-                   autofocus="autofocus"
-                   placeholder="O que você precisa fazer?"
-                   required />
-        <% end %>
-    </div>
-</nav>
-
-<ul class="list-group">
-<% for tarefa in @tarefas %>
-    <li class="list-group-item <%= 'editing' if tarefa == @tarefa %> <%= 'concluida' if tarefa.concluida %>">
-        <div class="view">
-            
-            <a href="<%= toggle_tarefa_path tarefa %>"
-             class="check"
-             data-method="patch">
-             </a>
-
-            <a class="titulo" href="<%= edit_tarefa_path tarefa %>?list=<%= action_name %>">
-                <%= tarefa.titulo %>
-            </a>
-
-            <a class="remove" href="<%= tarefa_path tarefa %>"
-            data-method="delete"
-            data-confirm="Tem acerteza que deseja remover esta tarefa ?">
-            </a>
-        </div>
-
-
-        <%= form_for tarefa, html: {class: 'edit'} do %>
-            <input type="hidden" name="list" value="<%= params[:list] || :index %>">
-            <input class="form-control" name="titulo" value="<%= tarefa.titulo %>" autofocus required>
-        <% end %>
-    </li>
-    <% end %>
-</ul>
+                <%= form_for tarefa, html: {class: 'edit'} do %>
+                <input type="hidden" name="list" value="<%= params[:list] || :index %>">
+                <input class="form-control" name="titulo" value="<%= tarefa.titulo %>" autofocus required>
+                <% end %>
+            </li>
+            <% end %>
+        </ul>
 
         <!--  Contador Rodapé  -->
-<nav class="navbar navbar navbar-fixed-bottom">
-    <div class="container-fluid">
-        <strong class="navbar-text">
+        <nav class="navbar navbar-fixed-bottom" >
+            <div>
+                <strong class="navbar-text" >
 
-          <span id="count-tarefas">
-            <%= pluralize @tarefas.count, 'tarefa' %> 
-          </span>
-            |
-          <span id="count-ativas">
-            <%= pluralize @count_ativas, 'ativa' %>
-          </span>
-            |
-          <span id="count-concluidas">
-             <%= @count_concluidas %> Concluídas
-          </span>
-          <span>
-              <a class="label label-default" href="<%= usuarios_path %>" >usuario</a>
-              <a class="label label-default" href="<%= new_usuario_path %>">novo usuário</a> |
+                  <span id="count-tarefas">
+                    <%= pluralize @tarefas.count, 'tarefa' %>
+                  </span>
+                            |
+                  <span id="count-ativas">
+                    <%= pluralize @count_ativas, 'ativa' %>
+                  </span>
+                            |
+                  <span id="count-concluidas">
+                     <%= @count_concluidas %> Concluídas
+                  </span>
+
+                  <div>
+                      <a class="label label-default" href="<%= usuarios_path %>" >usuario</a> |
+                      <a class="label label-default" href="<%= new_usuario_path %>">novo usuário</a> |
+                  </div>
+
+                  <div class="btn-group pull-right">
+                      <%= link_to_unless(logado?, 'login', login_path, class: 'btn btn-primary btn-xs'){} %>
+                      <%= link_to_if(logado?, 'lougout', logout_path, class: 'btn btn-danger btn-xs'){}%>
+                  </div>
+
+                </strong>
+            </div>
+        </nav>
 
 
 
-          </span>
-            
-        </strong>
-    </div>
-</nav>
+

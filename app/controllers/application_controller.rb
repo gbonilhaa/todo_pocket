@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
      	session[:id]
      end
 
-     def usuario_logado
+     def usuario_logado?
      	cadastro.find session_id rescue nil
      end
 end

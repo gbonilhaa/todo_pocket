@@ -1,8 +1,8 @@
 class SessionsController < ApplicationController
   def create
-    	cadastro = cadastro.find_by_email(params[:email])
-    	if cadastro && cadastro.authenticate(params[:password])
-    		session[:id] = cadastro.id
+    	usuario = Usuario.find_by_email(params[:email])
+    	if usuario && usuario.authenticate(params[:password])
+    		session[:id] = usuario.id
     		redirect_to root_path
     else
     	render :new
