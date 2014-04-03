@@ -41,21 +41,43 @@
         </ul>
 
         <!--  Contador Rodapé  -->
+      <footer id="footer">
         <nav class="navbar navbar-fixed-bottom" >
-            <div>
-                <strong class="navbar-text" >
+
+          <div>
+
+            <strong class="navbar-text" >
 
                   <span id="count-tarefas">
-                    <%= pluralize @tarefas.count, 'tarefa' %>
+                    <%#= pluralize @tarefas.count, 'tarefa' %>
+
+                    <a class="<%= 'selected' if action_name == 'index' %>"
+                       href="<%= tarefas_path %>">
+                      <span class="label label-default">Todas <span class="badge"><%= @count_todas %></span></span>
+                        </a>
                   </span>
-                            |
+
                   <span id="count-ativas">
-                    <%= pluralize @count_ativas, 'ativa' %>
+                    <%#= pluralize @count_ativas, 'ativa' %>
+
+                    <a class="<%= 'selected' if action_name == 'ativas' %>"
+                       href="<%= ativas_tarefas_path %>">
+                      <span class="label label-default"> Ativas <span class="badge"><%= @count_ativas %></span></span>
+                    </a>
                   </span>
                             |
                   <span id="count-concluidas">
-                     <%= @count_concluidas %> Concluídas
+                    <%#= @count_concluidas %> 
+
+                    <a class="<%= 'selected' if action_name == 'concluidas' %>"
+                       href="<%= concluidas_tarefas_path %>">
+                      <span class="label label-default"> Concluídas <span class="badge"><%= @count_concluidas %></span></span>
+                    </a>
+
                   </span>
+
+
+
 
                   <div>
                       <a class="label label-default" href="<%= usuarios_path %>" >usuario</a> |
@@ -63,14 +85,21 @@
                   </div>
 
                   <div class="btn-group pull-right">
-                      <%= link_to_unless(logado?, 'login', login_path, class: 'btn btn-primary btn-xs'){} %>
-                      <%= link_to_if(logado?, 'lougout', logout_path, class: 'btn btn-danger btn-xs'){}%>
+                    <% if logado? %>
+                        <a href="<%= logout_path %>" class="btn btn-danger">
+                          <i class="fa fa-sign-out"></i> logout
+                        </a>
+                    <% else %>
+                        <a href="<%= login_path %>" class="btn btn-info">
+                          <i class="fa fa-sign-in"></i> login
+                        </a>
+                    <% end %>
                   </div>
 
                 </strong>
-            </div>
+          </div>
         </nav>
 
-
+      </footer>
 
 
