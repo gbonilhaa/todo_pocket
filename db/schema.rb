@@ -11,14 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140403195610) do
+ActiveRecord::Schema.define(version: 20140403205856) do
 
   create_table "tarefas", force: true do |t|
     t.string   "titulo"
     t.boolean  "concluida",  default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "usuario_id"
   end
+
+  add_index "tarefas", ["usuario_id"], name: "index_tarefas_on_usuario_id"
 
   create_table "usuarios", force: true do |t|
     t.string   "nomerails"
