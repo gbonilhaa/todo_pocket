@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :logado?
-  helper_method :usuario_logado?
+  helper_method :usuario_logado
    
      def logado?
        session_id.present?
@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
      	session[:id]
      end
 
-     def usuario_logado?
-     	cadastro.find session_id rescue nil
+     def usuario_logado
+     	Usuario.find session_id rescue nil
      end
 end

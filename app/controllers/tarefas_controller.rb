@@ -1,41 +1,41 @@
 class TarefasController < ApplicationController
-   before_action :acesso_restrito!
-	before_action :count_all, only: [:index, :ativas, :concluidas, :edit]
+  before_action :acesso_restrito!
+  before_action :count_all, only: [:index, :ativas, :concluidas, :edit]
   
   def index
-	@tarefas = Tarefa.all
-    @count_concluidas = count_concluidas
+   @tarefas = scope.all
+   @count_concluidas = count_concluidas
   end
 
   def toggle
-  	Tarefa.find(params[:id]).toggle! :concluida
+    scope.find(params[:id]).toggle! :concluida
     redirect_to :back
   end
 
   def create
-    Tarefa.create titulo: params[:tarefa]
+    scope.create titulo: params[:tarefa]
     redirect_to :back
   end
 
   def destroy
-    tarefa = Tarefa.find params[:id]
+    tarefa = scope.find params[:id]
     tarefa.destroy
     redirect_to :back
   end
 
   def edit
     @tarefas = case params[:list]
-      when 'concluidas' then Tarefa.concluidas
-      when 'ativas' then Tarefa.ativas
-      else Tarefa.all
+      when 'concluidas' then scope.concluidas
+      when 'ativas' then scope.ativas
+      else scope.all
     end
 
-    @tarefa = Tarefa.find params[:id]
+    @tarefa = scope.find params[:id]
     render :index
   end
 
   def update
-    Tarefa.update params[:id], titulo: params[:titulo]
+    scope.update params[:id], titulo: params[:titulo]
     #redirect_to tarefas_path
     redirect_to case params[:list]
        when 'concluidas' then concluidas_tarefas_path
@@ -45,14 +45,20 @@ class TarefasController < ApplicationController
   end
   
   def ativas
-    @tarefas = Tarefa.ativas
+    @tarefas = scope.ativas
     @count_concluidas = count_concluidas
     render :index
   end
 
   def concluidas
-    @tarefas = Tarefa.concluidas
+    @tarefas = scope.concluidas
     render :index
+  end
+
+  private
+
+  def scope
+    usuario_logado.tarefas
   end
 
   def count_all
@@ -62,15 +68,15 @@ class TarefasController < ApplicationController
   end
 
   def count_concluidas
-    @count_concluidas = Tarefa.concluidas.count
+    @count_concluidas = scope.concluidas.count
   end
 
   def count_ativas
-    @count_ativas = Tarefa.ativas.count
+    @count_ativas = scope.ativas.count
   end
 
   def count_todas
-    @count_todas = Tarefa.count
+    @count_todas = scope.count
   end
 
   def redirect
@@ -83,9 +89,9 @@ class TarefasController < ApplicationController
 
   def get_tarefas_edit
       case params[:list]
-        when 'concluidas' then Tarefa.concluidas
-        when 'ativas' then Tarefa.ativas
-        else Tarefa.all
+        when 'concluidas' then scope.concluidas
+        when 'ativas' then scope.ativas
+        else scope.all
     end
   end
 
