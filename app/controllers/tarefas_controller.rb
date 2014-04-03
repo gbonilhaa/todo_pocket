@@ -1,4 +1,5 @@
 class TarefasController < ApplicationController
+   before_action :acesso_restrito!
 	before_action :count_all, only: [:index, :ativas, :concluidas, :edit]
   
   def index

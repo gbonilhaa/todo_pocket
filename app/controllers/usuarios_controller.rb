@@ -1,5 +1,5 @@
 class UsuariosController < ApplicationController
-  before_action :acesso_restrito!, except: :new
+  before_action :acesso_restrito!, except: [:new, :create]
     def index
       @usuarios = Usuario.all
 
