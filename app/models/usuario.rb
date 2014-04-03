@@ -1,5 +1,7 @@
 class Usuario < ActiveRecord::Base
   has_secure_password
+
+  has_many :tarefas
   
   validates :nome, :email, presence: true
   validates :email, uniqueness: true
